@@ -1,0 +1,654 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Learning report for an English-Chinese subtitle corpus explorer.">
+    <title>Learning Report | Noun → Verb Atlas</title>
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="assets/styles.css">
+    <script src="assets/site.js" defer></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="header-inner">
+        <a class="brand" href="index.html" aria-label="Noun to Verb Atlas home">
+          <span class="brand-mark">NV</span>
+          <span class="brand-copy">
+            <strong>Noun → Verb Atlas</strong>
+            <small data-i18n="brandSubtitle">Translation corpus lab</small>
+          </span>
+        </a>
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="siteNav">☰</button>
+        <nav class="site-nav" id="siteNav" aria-label="Primary navigation">
+          <a href="index.html" data-i18n="navExplorer">Explorer</a>
+          <a href="report.html" aria-current="page" data-i18n="navReport">Learning report</a>
+          <a href="codebook.html" data-i18n="navCodebook">Codebook</a>
+          <a href="ai-use.html" data-i18n="navAi">AI use</a>
+        </nav>
+        <div class="language-switch" role="group" aria-label="Interface language">
+          <button type="button" data-lang="en" aria-pressed="true">EN</button>
+          <button type="button" data-lang="zh" aria-pressed="false">繁</button>
+        </div>
+      </div>
+    </header>
+
+    <main class="page-shell">
+      <div data-page-lang="en">
+        <header class="report-hero">
+          <p class="eyebrow">Learning report</p>
+          <h1>When English nouns return to action in Chinese</h1>
+          <p>
+            A 500-pair study of nominal-to-verbal shifts in subtitles, built from the
+            Department of Translation's NV Atlas and its OpenSubtitles 2024 source.
+          </p>
+        </header>
+
+        <div class="report-layout">
+          <nav class="report-toc" aria-label="Report contents">
+            <a href="#origin">Origin</a>
+            <a href="#background">Background</a>
+            <a href="#gap">Gap</a>
+            <a href="#questions">Questions</a>
+            <a href="#method">Method</a>
+            <a href="#analysis">Analysis</a>
+            <a href="#conclusion">Conclusion</a>
+            <a href="#reflection">Reflection</a>
+            <a href="#references">References</a>
+          </nav>
+
+          <article class="report-body">
+            <section class="report-section" id="origin">
+              <h2>Origin</h2>
+              <p>
+                I chose this topic because the difference between an English nominal
+                and a Chinese verb is small enough to inspect line by line, but visible
+                enough to build a larger argument around. Subtitle dialogue is also a
+                useful reminder that translation is not a word-for-word copying task:
+                translators compress, reframe, and redistribute information to make a
+                line sound natural in the target language.
+              </p>
+              <p>
+                The project began from the course brief and the public
+                <a href="https://nvatlas.tra.cuhk.edu.hk/" target="_blank" rel="noreferrer">NV Atlas</a>
+                interface. Rather than treating the atlas as a black box, I wanted a
+                smaller, reproducible slice whose search, categories, and unresolved
+                boundaries could all be examined on one site.
+              </p>
+            </section>
+
+            <section class="report-section" id="background">
+              <h2>Background</h2>
+              <p>
+                English academic and formal prose often condenses a process into a
+                noun, as in <em>the construction of the tower</em>. Halliday and
+                Matthiessen describe this as grammatical metaphor: a process is
+                represented as an entity. Chinese can retain that nominal, but it may
+                also return the process to a verb, producing a more dynamic clause.
+              </p>
+              <p>
+                Vinay and Darbelnet's concept of transposition provides a practical
+                description of the local word-class change. The corpus narrows this
+                wider idea to one recurring direction: an English nominal is associated
+                with a Chinese verbal rendition in the aligned subtitle line. The project
+                then asks which kinds of meaning are most often pulled back into verbs.
+              </p>
+            </section>
+
+            <section class="report-section" id="gap">
+              <h2>Gap</h2>
+              <p>
+                NV Atlas already exposes a large collection of nominal-verb links and
+                several powerful visualizations. Its scale is a strength, but it also
+                makes it difficult for a visitor to see one bounded sample, the sampling
+                decisions behind it, and the places where a semantic codebook becomes
+                uncertain.
+              </p>
+              <p>
+                This project fills that smaller pedagogical gap. It publishes a fixed
+                random sample, one reproducible selection method, four transparent
+                categories, and a linked interface where a chart observation can be
+                checked immediately against sentence pairs. It does not claim to replace
+                NV Atlas; it turns part of the source into a portable case study.
+              </p>
+            </section>
+
+            <section class="report-section" id="questions">
+              <h2>Questions</h2>
+              <ol>
+                <li>
+                  Which semantic fields dominate a fixed 500-pair sample of English
+                  nominal-to-Chinese verbal shifts?
+                </li>
+                <li>
+                  How consistent are the term-to-verb links across repeated English
+                  nominals such as <strong>attention</strong>, <strong>protection</strong>,
+                  and <strong>permission</strong>?
+                </li>
+                <li>
+                  Do source and target sentence lengths vary by semantic category?
+                </li>
+                <li>
+                  Which codebook boundaries remain difficult, and what do those
+                  boundaries reveal about the data?
+                </li>
+              </ol>
+            </section>
+
+            <section class="report-section" id="method">
+              <h2>Method</h2>
+              <h3>Corpus and sample</h3>
+              <p>
+                On 5 November 2026, I extracted the records exposed by the public NV
+                Atlas search page. NV Atlas identifies OpenSubtitles v2024 as its source
+                and documents POS tagging, Jieba segmentation, Gemma 3 assistance, and
+                human inspection in its pipeline. The public search payload contained
+                20,965 sentence records at the time of collection.
+              </p>
+              <p>The filters were fixed before sampling:</p>
+              <ul>
+                <li>both English and Chinese sides must be non-empty;</li>
+                <li>the English side must contain at least three consecutive letters;</li>
+                <li>the Chinese side must contain Chinese characters;</li>
+                <li>English must be 10–250 characters and Chinese at most 300 characters;</li>
+                <li>the record must contain at least one nominal-verb annotation;</li>
+                <li>exact English-Chinese sentence-pair duplicates are removed.</li>
+              </ul>
+              <p>
+                The filters rejected 167 length outliers and left 20,798 candidates.
+                Python's <span class="mono">random.Random(2026).sample()</span> then drew
+                500 candidates without replacement. The first nominal-verb annotation
+                returned for each sentence became the row's <span class="mono">key_term</span>
+                and <span class="mono">target_key_term</span>. Every row keeps the NV
+                Atlas sentence ID, source label, collection date, and sample seed.
+              </p>
+
+              <div class="stat-strip" aria-label="Corpus summary">
+                <div><strong>500</strong><span>sentence pairs</span></div>
+                <div><strong>243</strong><span>English nominals</span></div>
+                <div><strong>309</strong><span>Chinese verb renderings</span></div>
+                <div><strong>50</strong><span>source-checked entries</span></div>
+              </div>
+
+              <h3>Classification and check</h3>
+              <p>
+                I applied the four-category codebook on the
+                <a href="codebook.html">codebook page</a>. Category decisions focus on
+                what the English nominal profiles in its sentence, not on the form of
+                the Chinese word alone. A second fixed-seed selection (seed 2027) marked
+                50 entries for source matching and closer category review. The IDs and
+                text matched the public source; five borderline category labels and one
+                encoding artefact were corrected during that review.
+              </p>
+              <div class="callout">
+                <strong>Reliability limitation:</strong> the labelling workflow was
+                AI-assisted and rule-based. It is reproducible, but it is not equivalent
+                to independent human double annotation. Before the oral presentation,
+                I must re-read the 50 checked entries and be ready to defend the five
+                boundary decisions.
+              </div>
+
+              <h3>Website</h3>
+              <p>
+                The site is static HTML, CSS, JavaScript, and JSON. Search and three
+                filters share one state object. Changes update the network, scatter
+                plot, bilingual KWIC, heat map, and data grid. Clicking a term enters it
+                into search, and the query string preserves the keyword, filters,
+                selected term, network controls, sorting, and page number.
+              </p>
+            </section>
+
+            <section class="report-section" id="analysis">
+              <h2>Analysis</h2>
+              <p>
+                The sample is dominated by everyday actions and states, but the large
+                total partly reflects the broadness of that residual category. The
+                category counts should be read together with the codebook boundaries and
+                the table, not as four equal-scale properties.
+              </p>
+              <figure class="figure-card">
+                <div class="bar-list" aria-label="Category distribution">
+                  <div class="bar-row">
+                    <span>Everyday action &amp; state</span>
+                    <div class="bar-track"><div class="bar-fill" style="width: 100%"></div></div>
+                    <strong>360</strong>
+                  </div>
+                  <div class="bar-row">
+                    <span>Communication &amp; representation</span>
+                    <div class="bar-track"><div class="bar-fill" style="width: 16.9%"></div></div>
+                    <strong>61</strong>
+                  </div>
+                  <div class="bar-row">
+                    <span>Cognition &amp; emotion</span>
+                    <div class="bar-track"><div class="bar-fill" style="width: 11.9%"></div></div>
+                    <strong>43</strong>
+                  </div>
+                  <div class="bar-row">
+                    <span>Institutions &amp; rules</span>
+                    <div class="bar-track"><div class="bar-fill" style="width: 10%"></div></div>
+                    <strong>36</strong>
+                  </div>
+                </div>
+                <figcaption>
+                  Category distribution in the fixed sample. The residual everyday
+                  category contains both ordinary actions and states, so its size is a
+                  descriptive result, not proof that everyday processes are more
+                  “translatable”.
+                </figcaption>
+              </figure>
+
+              <h3>Nominal–verb network</h3>
+              <p>
+                The <a href="index.html#explorer">Nominal–verb network</a> makes
+                repetition visible. <strong>attention → 注意</strong> is the strongest
+                repeated edge (27 occurrences), followed by
+                <strong>protection → 保护</strong> (12) and
+                <strong>vacation → 度假</strong> (9). Repetition is evidence of a stable
+                translation preference in this sample, not proof that every translator
+                made the same choice independently. Subtitle duplicates and recurring
+                genre formulas may inflate a link.
+              </p>
+
+              <h3>Length and semantic field</h3>
+              <p>
+                The <a href="index.html#explorer">Length and semantic field</a> scatter
+                plot shows the English side averaging 58.3 characters and the Chinese
+                side averaging 17.6 characters. Raw character counts are not directly
+                comparable across writing systems, so the useful result is the spread,
+                not a claim that Chinese is “one third as long”.
+              </p>
+              <p>
+                Institutional entries have the largest mean target length (23.1
+                characters), while communication entries are shortest (15.5). Legal and
+                administrative language often needs explicit roles, conditions, or
+                procedural detail in Chinese. Communication is more likely to remain a
+                compact conversational action such as <em>解释</em> or <em>邀请</em>.
+              </p>
+
+              <h3>Bilingual KWIC and suffix heat map</h3>
+              <p>
+                The <a href="index.html#explorer">Bilingual KWIC</a> view prevents the
+                network from becoming a list of disconnected word pairs. A short action
+                verb only counts as an N-V shift when the aligned sentence supports that
+                reading. For example, <em>attention</em> can become <em>注意</em> when a
+                speaker asks people to notice something, but it becomes <em>稍息</em> in
+                a military command. Both are verbal in context, but their source meaning
+                is not identical.
+              </p>
+              <p>
+                The <a href="index.html#explorer">Suffix by category</a> heat map shows
+                why a suffix cannot serve as a category rule by itself. The same
+                <span class="mono">-tion</span> family spans physical action,
+                communication, emotion, and institutional procedure. Nominal form
+                predicts the grammatical shift, but sentence meaning is still required
+                to assign the semantic field.
+              </p>
+
+              <h3>Data-grid check</h3>
+              <p>
+                Every chart is built from the same filtered records shown in the
+                <a href="index.html#explorer">Corpus data grid</a>. I checked the
+                category totals in the report against the sample JSON and used the same
+                count function in the data build script. The grid's export button writes
+                the current filtered records, not a hard-coded copy.
+              </p>
+            </section>
+
+            <section class="report-section" id="conclusion">
+              <h2>Conclusion</h2>
+              <p>
+                The project achieved a bounded, traceable corpus explorer that turns
+                nominal-to-verbal shifts into an observable analytical process. The
+                strongest repeated links are direct action verbs, but the sentence
+                evidence shows why semantic context cannot be inferred from a form
+                change alone.
+              </p>
+              <p>
+                The main finding is methodological as well as descriptive: a network is
+                useful for spotting patterns, while a linked table and KWIC view are
+                necessary for testing those patterns. The corpus supports the claim that
+                English nominalization often reappears as a Chinese process, but it does
+                not support treating every Chinese verb as the same kind of
+                transposition.
+              </p>
+            </section>
+
+            <section class="report-section" id="reflection">
+              <h2>Reflection</h2>
+              <p>
+                The most difficult part was not creating a chart. It was deciding what a
+                chart should count. A large, visually attractive network can hide noisy
+                or context-dependent links. I therefore added source-checked filters,
+                URL state, and a visible data grid so that a reader can move from a
+                pattern to evidence and back again.
+              </p>
+              <p>
+                I would improve the project by asking a second annotator to code an
+                independent random subset and reporting agreement. I would also separate
+                the broad “everyday” category into smaller action and state categories,
+                but only after testing whether the extra distinction remains reliable.
+              </p>
+              <p>
+                AI was useful for drafting the interface, writing repeatable extraction
+                code, and noticing duplicate or malformed text. It could not decide
+                whether a translation is idiomatic in every context, and it initially
+                encouraged a convenient first-500 sample. Reading the brief revealed
+                that this would not be a fair sample. The fixed-seed resampling was a
+                direct result of checking the brief against the proposed workflow.
+              </p>
+            </section>
+
+            <section class="report-section" id="references">
+              <h2>References</h2>
+              <ul>
+                <li>
+                  Baker, M. (2018). <em>In Other Words: A Coursebook on Translation</em>
+                  (3rd ed.). Routledge.
+                </li>
+                <li>
+                  Halliday, M. A. K., &amp; Matthiessen, C. M. I. M. (2014).
+                  <em>Halliday's Introduction to Functional Grammar</em> (4th ed.).
+                  Routledge.
+                </li>
+                <li>
+                  Lison, P., &amp; Tiedemann, J. (2016). OpenSubtitles2016: Extracting
+                  Large Parallel Corpora from Movie and TV Subtitles.
+                  <em>Proceedings of LREC 2016</em>.
+                </li>
+                <li>
+                  NV Atlas. <em>Nominalization–Verb Atlas</em>, Department of
+                  Translation, The Chinese University of Hong Kong.
+                  <a href="https://nvatlas.tra.cuhk.edu.hk/" target="_blank" rel="noreferrer">Website</a>.
+                </li>
+                <li>
+                  Vinay, J.-P., &amp; Darbelnet, J. (1995).
+                  <em>Comparative Stylistics of French and English: A Methodology for Translation</em>.
+                  John Benjamins.
+                </li>
+              </ul>
+            </section>
+          </article>
+        </div>
+      </div>
+
+      <div data-page-lang="zh" hidden>
+        <header class="report-hero">
+          <p class="eyebrow">學習報告</p>
+          <h1>當英語名詞在中文裏重新變成行動</h1>
+          <p>
+            以翻譯系 NV Atlas 及其 OpenSubtitles 2024 語料為基礎，研究字幕中
+            500 組「英語名詞轉為中文動詞」的句對。
+          </p>
+        </header>
+
+        <div class="report-layout">
+          <nav class="report-toc" aria-label="報告目錄">
+            <a href="#zh-origin">緣起</a>
+            <a href="#zh-background">背景</a>
+            <a href="#zh-gap">研究缺口</a>
+            <a href="#zh-questions">研究問題</a>
+            <a href="#zh-method">方法</a>
+            <a href="#zh-analysis">分析</a>
+            <a href="#zh-conclusion">結論</a>
+            <a href="#zh-reflection">反思</a>
+            <a href="#zh-references">參考文獻</a>
+          </nav>
+
+          <article class="report-body">
+            <section class="report-section" id="zh-origin">
+              <h2>緣起</h2>
+              <p>
+                我選擇這個題目，是因為英語名詞與中文動詞之間的差異既小得可以逐句
+                檢查，又明顯得足以支撐一個小型研究。字幕對話亦提醒我：翻譯不是把
+                詞語逐字搬過去，而是因應語氣、節奏與語境，壓縮、重組及重新分配訊息。
+              </p>
+              <p>
+                專案由課程要求和公開的
+                <a href="https://nvatlas.tra.cuhk.edu.hk/" target="_blank" rel="noreferrer">NV Atlas</a>
+                開始。我不想只把這個大型平台當成黑盒，而是抽取一個較小、可重現的
+                樣本，把搜尋、分類與仍然模糊的界線放在同一個網站上檢查。
+              </p>
+            </section>
+
+            <section class="report-section" id="zh-background">
+              <h2>背景</h2>
+              <p>
+                英語書面語常把過程壓縮成名詞，例如
+                <em>the construction of the tower</em>。Halliday 與 Matthiessen
+                將這種現象理解為語法隱喻：把過程重新表述為實體。中文可以保留名詞，
+                也可以把過程放回動詞位置，令句子更有動態感。
+              </p>
+              <p>
+                Vinay 與 Darbelnet 的「詞性轉換」概念，為這種局部詞類變化提供了
+                實用描述。本語料把範圍收窄到一個固定方向：在對齊的字幕句中，英語
+                名詞與中文動詞譯法形成連結。接着要問的是，哪一類意義最常被放回動詞。
+              </p>
+            </section>
+
+            <section class="report-section" id="zh-gap">
+              <h2>研究缺口</h2>
+              <p>
+                NV Atlas 已提供大量名詞—動詞連結及多種視覺化。它的規模是優點，卻也
+                令訪客較難看清一個有明確界線的樣本、抽樣決定，以及分類碼本在哪些
+                地方出現不確定性。
+              </p>
+              <p>
+                本專案填補的是較小的教學缺口：公開固定隨機樣本、可重現的篩選方法、
+                四項透明分類，以及讓圖表觀察可以直接回到句對核對的連動介面。它不是
+                NV Atlas 的替代品，而是把部分來源語料整理成可攜的個案研究。
+              </p>
+            </section>
+
+            <section class="report-section" id="zh-questions">
+              <h2>研究問題</h2>
+              <ol>
+                <li>在固定的 500 組樣本中，哪個語意場最常出現英語名詞轉為中文動詞？</li>
+                <li>重複名詞如 attention、protection、permission 的名詞—動詞連結有多一致？</li>
+                <li>原文與譯文的句長是否因語意類別而不同？</li>
+                <li>哪些碼本界線最難劃分？這些模糊處反映了甚麼？</li>
+              </ol>
+            </section>
+
+            <section class="report-section" id="zh-method">
+              <h2>方法</h2>
+              <h3>語料與抽樣</h3>
+              <p>
+                2026 年 11 月 5 日，我抽取公開 NV Atlas 搜尋頁所載的語料紀錄。
+                NV Atlas 列明資料來源為 OpenSubtitles 2024，並在方法說明中提及詞性
+                標註、Jieba 分詞、Gemma 3 輔助及人工檢查。抽取當日頁面載有
+                20,965 組句對紀錄。
+              </p>
+              <p>抽樣前已固定以下篩選條件：</p>
+              <ul>
+                <li>英語與中文兩側均不可為空；</li>
+                <li>英語至少有三個連續英文字母；</li>
+                <li>中文一側必須含中文字元；</li>
+                <li>英語句長為 10–250 字元，中文最多 300 字元；</li>
+                <li>紀錄至少有一組名詞—動詞標註；</li>
+                <li>刪除完全相同的英中句對。</li>
+              </ul>
+              <p>
+                長度條件排除 167 項極端紀錄，剩下 20,798 個候選。其後以 Python 的
+                <span class="mono">random.Random(2026).sample()</span>
+                不重複抽取 500 組。每條紀錄採用 NV Atlas 傳回的第一組名詞—動詞標註，
+                作為 <span class="mono">key_term</span> 及
+                <span class="mono">target_key_term</span>。資料保留句對編號、來源、
+                收集日期及隨機種子。
+              </p>
+
+              <div class="stat-strip" aria-label="語料摘要">
+                <div><strong>500</strong><span>句對</span></div>
+                <div><strong>243</strong><span>英語名詞</span></div>
+                <div><strong>309</strong><span>中文動詞譯法</span></div>
+                <div><strong>50</strong><span>已核對來源的條目</span></div>
+              </div>
+
+              <h3>分類與核對</h3>
+              <p>
+                四類語意碼本見
+                <a href="codebook.html">分類碼本頁</a>。分類以英語名詞在句中所側重的
+                意義為準，而非只看中文詞形。其後以另一固定種子 2027 選出 50 條，
+                對照公開來源並重新檢查分類。句對編號和文字與來源相符；檢查期間修改了
+                五個邊界標籤，並修正一個編碼異常。
+              </p>
+              <div class="callout">
+                <strong>信度限制：</strong>標註流程由 AI 協助並以規則實行。它可以
+                重現，但不等同獨立的人類雙重標註。口頭報告前，我仍需親自重讀 50 條
+                已核對紀錄，並能解釋五個邊界決定。
+              </div>
+
+              <h3>網站</h3>
+              <p>
+                網站由靜態 HTML、CSS、JavaScript 與 JSON 組成。搜尋及三個篩選條件
+                共用同一個狀態物件，任何變動都會更新網絡、散點圖、雙語 KWIC、熱圖
+                和資料表。點擊詞語會把它送入搜尋；網址會保存關鍵字、篩選、已選詞語、
+                網絡控制、排序和頁碼。
+              </p>
+            </section>
+
+            <section class="report-section" id="zh-analysis">
+              <h2>分析</h2>
+              <p>
+                樣本以日常行動與狀態居多，但這個大類本身很寬，因此總數不能直接解釋為
+                「日常過程更容易轉換」。類別數字必須與碼本界線及資料表一起閱讀。
+              </p>
+              <figure class="figure-card">
+                <div class="bar-list" aria-label="類別分佈">
+                  <div class="bar-row">
+                    <span>日常行動與狀態</span>
+                    <div class="bar-track"><div class="bar-fill" style="width: 100%"></div></div>
+                    <strong>360</strong>
+                  </div>
+                  <div class="bar-row">
+                    <span>溝通與再現</span>
+                    <div class="bar-track"><div class="bar-fill" style="width: 16.9%"></div></div>
+                    <strong>61</strong>
+                  </div>
+                  <div class="bar-row">
+                    <span>認知與情感</span>
+                    <div class="bar-track"><div class="bar-fill" style="width: 11.9%"></div></div>
+                    <strong>43</strong>
+                  </div>
+                  <div class="bar-row">
+                    <span>制度與規則</span>
+                    <div class="bar-track"><div class="bar-fill" style="width: 10%"></div></div>
+                    <strong>36</strong>
+                  </div>
+                </div>
+                <figcaption>
+                  固定樣本的類別分佈。「日常」是包含普通行動和狀態的剩餘大類，
+                  因此其數量只是描述性結果，不能證明這類過程較容易翻譯。
+                </figcaption>
+              </figure>
+
+              <h3>名詞—動詞網絡</h3>
+              <p>
+                <a href="index.html#explorer">名詞—動詞網絡</a>顯示重複連結。
+                <strong>attention → 注意</strong> 是最強的固定連線（27 次），
+                其次是 <strong>protection → 保護</strong>（12 次）及
+                <strong>vacation → 度假</strong>（9 次）。這反映本樣本中穩定的翻譯
+                傾向，但不同字幕譯者不一定獨立作出相同選擇；重複字幕與類型化對白亦
+                可能令連結次數偏高。
+              </p>
+
+              <h3>長度與語意場</h3>
+              <p>
+                <a href="index.html#explorer">長度與語意場</a>散點圖中，英語句平均
+                58.3 個字元，中文句平均 17.6 個字元。兩種書寫系統的字元不能直接對等，
+                因此重點是分佈和離散程度，而不是「中文只有英文三分一長」的結論。
+              </p>
+              <p>
+                制度類譯句平均最長（23.1 字元），溝通類最短（15.5 字元）。
+                法律與行政語言有時要在中文明示角色、條件或程序；溝通動詞則較常保持
+                精簡，例如 <em>解釋</em> 或 <em>邀請</em>。
+              </p>
+
+              <h3>雙語 KWIC 與字尾熱圖</h3>
+              <p>
+                <a href="index.html#explorer">雙語關鍵詞語境</a>防止網絡只是一堆
+                脫離上下文的詞對。簡短中文動詞只有在對齊句支持下，才算名詞轉動詞的
+                例子。例如 <em>attention</em> 在提醒別人留意時譯為 <em>注意</em>，
+                但在軍事口令中可譯為 <em>稍息</em>。兩者都是語境中的動詞，但來源意義
+                不完全相同。
+              </p>
+              <p>
+                <a href="index.html#explorer">字尾與類別</a>熱圖說明：單憑字尾不能
+                決定語意類別。同屬 <span class="mono">-tion</span> 的詞可以分佈在
+                物理行動、溝通、情感及制度程序之中。名詞形式能預測詞類轉換，
+                但仍須依句子意義判斷語意場。
+              </p>
+
+              <h3>資料表核對</h3>
+              <p>
+                所有圖表都使用<a href="index.html#explorer">語料資料表</a>中的同一批
+                篩選紀錄。我以建構資料的同一套計數函數核對報告中的類別總數。資料表的
+                匯出按鈕寫出目前篩選結果，而不是固定副本。
+              </p>
+            </section>
+
+            <section class="report-section" id="zh-conclusion">
+              <h2>結論</h2>
+              <p>
+                本專案建立了一個有明確範圍、來源可追溯的名詞—動詞語料探索器，
+                把英語名詞轉為中文動詞的現象變成可觀察的分析過程。最強的重複連線
+                多為直接行動動詞，但句子證據說明，不能只憑詞性改變推斷語意。
+              </p>
+              <p>
+                主要發現既有描述意義，也有方法意義：網絡有助發現規律，但必須配合
+                資料表與 KWIC 才能檢驗規律。語料支持「英語名詞化常以中文過程重新
+                出現」的說法，卻不支持把所有中文動詞都視為同一類詞性轉換。
+              </p>
+            </section>
+
+            <section class="report-section" id="zh-reflection">
+              <h2>反思</h2>
+              <p>
+                最困難的部分不是畫圖，而是決定圖表究竟要計算甚麼。華麗而龐大的網絡
+                可以掩蓋含糊或依賴語境的連線。因此我加入來源核對篩選、網址狀態及可見
+                的資料表，讓讀者能在規律與證據之間往返。
+              </p>
+              <p>
+                下一步應請第二位標註者獨立分類一個隨機子集，並報告一致率。我也想把
+                「日常」大類分成較小的行動與狀態類別，但必須先測試新增區分是否仍然可靠。
+              </p>
+              <p>
+                AI 有助草擬介面、編寫可重複的抽取程式，以及發現重複或受損文字；但它
+                不能替我判斷每個譯法在語境中是否自然。它最初也採用了方便但不公平的
+                「首 500 條」資料。閱讀作業要求後，我才發現這不符合抽樣原則；改用
+                固定種子重新抽樣，正是把作業要求與工作流程逐項核對的結果。
+              </p>
+            </section>
+
+            <section class="report-section" id="zh-references">
+              <h2>參考文獻</h2>
+              <ul>
+                <li>Baker, M. (2018). <em>In Other Words: A Coursebook on Translation</em> (3rd ed.). Routledge.</li>
+                <li>Halliday, M. A. K., &amp; Matthiessen, C. M. I. M. (2014). <em>Halliday's Introduction to Functional Grammar</em> (4th ed.). Routledge.</li>
+                <li>Lison, P., &amp; Tiedemann, J. (2016). OpenSubtitles2016: Extracting Large Parallel Corpora from Movie and TV Subtitles. <em>Proceedings of LREC 2016</em>.</li>
+                <li>NV Atlas. <em>Nominalization–Verb Atlas</em>, Department of Translation, The Chinese University of Hong Kong. <a href="https://nvatlas.tra.cuhk.edu.hk/" target="_blank" rel="noreferrer">網站</a>.</li>
+                <li>Vinay, J.-P., &amp; Darbelnet, J. (1995). <em>Comparative Stylistics of French and English: A Methodology for Translation</em>. John Benjamins.</li>
+              </ul>
+            </section>
+          </article>
+        </div>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        <div>
+          <strong data-i18n="footerTitle">Noun → Verb Atlas</strong>
+          <p data-i18n="footerText">
+            A course project for TRAN3620 Translation Technology in the Age of AI.
+            Corpus source: NV Atlas / OpenSubtitles v2024.
+          </p>
+        </div>
+        <div class="footer-links">
+          <a href="index.html" data-i18n="navExplorer">Explorer</a>
+          <a href="codebook.html" data-i18n="navCodebook">Codebook</a>
+          <a href="ai-use.html" data-i18n="footerDeclaration">AI declaration</a>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

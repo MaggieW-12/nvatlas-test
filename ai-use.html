@@ -1,0 +1,300 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="AI use declaration for the Noun to Verb Atlas course project.">
+    <title>AI Use Declaration | Noun → Verb Atlas</title>
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="assets/styles.css">
+    <script src="assets/site.js" defer></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="header-inner">
+        <a class="brand" href="index.html" aria-label="Noun to Verb Atlas home">
+          <span class="brand-mark">NV</span>
+          <span class="brand-copy">
+            <strong>Noun → Verb Atlas</strong>
+            <small data-i18n="brandSubtitle">Translation corpus lab</small>
+          </span>
+        </a>
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="siteNav">☰</button>
+        <nav class="site-nav" id="siteNav" aria-label="Primary navigation">
+          <a href="index.html" data-i18n="navExplorer">Explorer</a>
+          <a href="report.html" data-i18n="navReport">Learning report</a>
+          <a href="codebook.html" data-i18n="navCodebook">Codebook</a>
+          <a href="ai-use.html" aria-current="page" data-i18n="navAi">AI use</a>
+        </nav>
+        <div class="language-switch" role="group" aria-label="Interface language">
+          <button type="button" data-lang="en" aria-pressed="true">EN</button>
+          <button type="button" data-lang="zh" aria-pressed="false">繁</button>
+        </div>
+      </div>
+    </header>
+
+    <main class="page-shell">
+      <div data-page-lang="en">
+        <header class="report-hero">
+          <p class="eyebrow">Disclosure</p>
+          <h1>AI use declaration</h1>
+          <p>
+            A brief account of the tools, tasks, checks, successful prompts, and
+            mistakes involved in this project.
+          </p>
+        </header>
+
+        <div class="report-layout">
+          <nav class="report-toc" aria-label="Declaration contents">
+            <a href="#tools">Tools</a>
+            <a href="#tasks">Tasks</a>
+            <a href="#checks">Checks</a>
+            <a href="#prompts">Prompts</a>
+            <a href="#mistake">AI mistake</a>
+            <a href="#student-review">Student review</a>
+          </nav>
+
+          <article class="report-body">
+            <section class="report-section" id="tools">
+              <h2>Tools and models</h2>
+              <p>
+                I used <strong>OpenAI Codex in the ChatGPT desktop application</strong>,
+                running on a GPT-5-family model. The exact model build is not exposed in
+                the working interface, so I do not claim a more precise version. I also
+                used Python's standard library to download and transform the public
+                corpus, and browser rendering tools to inspect the finished pages.
+              </p>
+              <p>
+                The corpus itself was not written by a generative model. It comes from
+                NV Atlas's public corpus, whose methodology page identifies
+                OpenSubtitles v2024 and describes its own POS tagging, segmentation, AI
+                assistance, and human inspection pipeline.
+              </p>
+            </section>
+
+            <section class="report-section" id="tasks">
+              <h2>What I asked AI to do</h2>
+              <ul>
+                <li>Read the attached course brief and turn its requirements into a checklist.</li>
+                <li>
+                  Extract the public NV Atlas sentence records and generate a fixed-seed,
+                  deduplicated 500-entry sample.
+                </li>
+                <li>Draft rule-based category assignments from a four-field codebook.</li>
+                <li>Write the static HTML, CSS, and JavaScript interface.</li>
+                <li>
+                  Build linked search, filters, network, scatter plot, KWIC, heat map,
+                  data grid, CSV export, and URL state.
+                </li>
+                <li>Draft the English report, Traditional Chinese interface, and codebook wording.</li>
+                <li>Render and inspect the site, then check counts and broken links.</li>
+              </ul>
+            </section>
+
+            <section class="report-section" id="checks">
+              <h2>What I checked</h2>
+              <ul>
+                <li>Every output row has both sentence texts, a traceable NV Atlas sentence ID, category, and check status.</li>
+                <li>The build script draws 500 rows from a fixed seed and records the filter counts.</li>
+                <li>The sample contains 243 English nominals and 309 Chinese verb renderings.</li>
+                <li>Category totals agree with the published JSON and the data grid.</li>
+                <li>Search, category, source-check, suffix, chart controls, sorting, and pagination update from one state.</li>
+                <li>Clicking terms in the network, scatter plot, KWIC, or table writes the term into search.</li>
+                <li>The URL stores the keyword, filters, selected term, chart controls, and grid state.</li>
+                <li>The language switch preserves a fully English or Traditional Chinese interface.</li>
+                <li>Desktop and mobile layouts were rendered and visually inspected.</li>
+              </ul>
+            </section>
+
+            <section class="report-section" id="prompts">
+              <h2>Two prompts that worked well</h2>
+              <blockquote>
+                “Read the attached brief and audit the supplied CSV against every
+                mandatory field, sampling rule, data-quality requirement, and website
+                requirement. Do not invent provenance.”
+              </blockquote>
+              <blockquote>
+                “Build a static corpus explorer in which search, all filters, the data
+                grid, and every visualization share one filtered data model. Clicking a
+                term must update search, and the full search state must be reproducible
+                in the URL.”
+              </blockquote>
+            </section>
+
+            <section class="report-section" id="mistake">
+              <h2>One thing AI got wrong</h2>
+              <p>
+                The supplied CSV began with the first 500 NV Atlas records. That looked
+                convenient, but the course brief explicitly says the first 500 lines are
+                not a fair sample. AI initially treated the file as submission-ready.
+                Comparing the brief's sampling rules against the source revealed the
+                problem.
+              </p>
+              <p>
+                I corrected it by extracting the full public search payload, applying
+                pre-stated filters, and sampling 500 unique candidates with seed 2026.
+                A separate review then found five category-boundary labels and one
+                mojibake punctuation sequence that needed correction.
+              </p>
+            </section>
+
+            <section class="report-section" id="student-review">
+              <h2>Student review before submission</h2>
+              <div class="callout">
+                <p>
+                  <strong>Required:</strong> the course asks the student to verify at
+                  least 50 entries personally. This build marks a fixed-seed set of 50
+                  as <span class="mono">human_checked=yes</span> after an AI-assisted
+                  comparison against the public source. That is evidence of a source
+                  check, but it does not replace the student's independent review.
+                </p>
+                <p>
+                  Before submission, open the explorer with “Checked only”, read the 50
+                  entries, confirm the sentence-pair alignment and category decisions,
+                  and record any changes. If that review is not completed, change those
+                  values to <span class="mono">no</span> rather than making a false
+                  declaration.
+                </p>
+              </div>
+              <p>
+                The student should also rehearse one category example from the codebook
+                and be able to explain the difference between an AI-assisted source
+                match and an independent human judgement.
+              </p>
+            </section>
+          </article>
+        </div>
+      </div>
+
+      <div data-page-lang="zh" hidden>
+        <header class="report-hero">
+          <p class="eyebrow">使用聲明</p>
+          <h1>AI 使用聲明</h1>
+          <p>
+            簡述本專案使用的工具、工作、核對、有效提示，以及 AI 出錯的地方。
+          </p>
+        </header>
+
+        <div class="report-layout">
+          <nav class="report-toc" aria-label="聲明目錄">
+            <a href="#zh-tools">工具</a>
+            <a href="#zh-tasks">工作</a>
+            <a href="#zh-checks">核對</a>
+            <a href="#zh-prompts">提示詞</a>
+            <a href="#zh-mistake">AI 錯誤</a>
+            <a href="#zh-student-review">學生覆核</a>
+          </nav>
+
+          <article class="report-body">
+            <section class="report-section" id="zh-tools">
+              <h2>工具與模型</h2>
+              <p>
+                我使用 <strong>ChatGPT 桌面應用程式中的 OpenAI Codex</strong>，
+                其模型屬於 GPT-5 系列。工作介面沒有顯示更精確的模型版本，因此我不聲稱
+                知道未公開的建置版本。我亦使用 Python 標準函式庫下載及轉換公開語料，
+                並以瀏覽器渲染工具檢查完成後的網頁。
+              </p>
+              <p>
+                語料不是由生成式模型撰寫。它來自 NV Atlas 公開語料；該站方法頁列明
+                OpenSubtitles 2024 為來源，並說明詞性標註、分詞、AI 輔助及人工檢查
+                流程。
+              </p>
+            </section>
+
+            <section class="report-section" id="zh-tasks">
+              <h2>我要求 AI 做甚麼</h2>
+              <ul>
+                <li>閱讀附件作業要求，並轉化為檢查清單。</li>
+                <li>抽取 NV Atlas 公開句對，以固定種子建立去重複的 500 條樣本。</li>
+                <li>按四類語意碼本草擬規則式分類。</li>
+                <li>編寫靜態 HTML、CSS 及 JavaScript 介面。</li>
+                <li>建立連動搜尋、篩選、網絡、散點圖、KWIC、熱圖、資料表、CSV 匯出及網址狀態。</li>
+                <li>草擬英文報告、繁體中文介面及碼本文字。</li>
+                <li>渲染及檢查網站，並核對數字和連結。</li>
+              </ul>
+            </section>
+
+            <section class="report-section" id="zh-checks">
+              <h2>我核對了甚麼</h2>
+              <ul>
+                <li>每條輸出均有英中句對、可追溯的 NV Atlas 句對編號、類別及核對狀態。</li>
+                <li>建構程式以固定種子抽取 500 條，並記錄篩選數字。</li>
+                <li>樣本有 243 個英語名詞及 309 種中文動詞譯法。</li>
+                <li>類別總數與公開 JSON 及資料表一致。</li>
+                <li>搜尋、類別、來源核對、字尾、圖表控制、排序及分頁均使用同一個狀態。</li>
+                <li>點擊網絡、散點圖、KWIC 或資料表中的詞語，會把它寫入搜尋。</li>
+                <li>網址保存關鍵字、篩選、已選詞語、圖表控制及資料表狀態。</li>
+                <li>語言切換會完整顯示英文或繁體中文介面。</li>
+                <li>已渲染並檢查桌面與手機版面。</li>
+              </ul>
+            </section>
+
+            <section class="report-section" id="zh-prompts">
+              <h2>兩個有效的提示詞</h2>
+              <blockquote>
+                「閱讀附件作業要求，並按所有必要欄位、抽樣規則、資料品質及網站要求，
+                審核所附 CSV。不要虛構來源。」
+              </blockquote>
+              <blockquote>
+                「建立靜態語料探索器，讓搜尋、所有篩選、資料表及每項視覺化共用同一批
+                篩選結果。點擊詞語必須更新搜尋，完整搜尋狀態必須可由網址重現。」
+              </blockquote>
+            </section>
+
+            <section class="report-section" id="zh-mistake">
+              <h2>AI 出錯的地方</h2>
+              <p>
+                最初提供的 CSV 是 NV Atlas 的首 500 條紀錄。這看似方便，但作業要求
+                明言「首 500 行」不是公平樣本。AI 起初把該檔視為可以直接提交；
+                把要求逐條對照來源後，才發現問題。
+              </p>
+              <p>
+                修正方法是抽取完整公開搜尋資料，套用事先訂明的篩選條件，以種子 2026
+                隨機抽取 500 條不重複候選。其後核對又發現五個類別邊界標籤及一組亂碼
+                標點需要修正。
+              </p>
+            </section>
+
+            <section class="report-section" id="zh-student-review">
+              <h2>提交前的學生覆核</h2>
+              <div class="callout">
+                <p>
+                  <strong>必須完成：</strong>課程要求學生親自核對至少 50 條資料。
+                  本建置在 AI 協助對照公開來源後，把一個固定種子抽出的 50 條設為
+                  <span class="mono">human_checked=yes</span>。這能證明來源核對，
+                  但不能取代學生獨立覆核。
+                </p>
+                <p>
+                  提交前，請在探索器選擇「僅顯示已核對」，閱讀該 50 條，確認句對對齊
+                  及類別判斷，並記錄任何修改。若未完成，應把那些值改為
+                  <span class="mono">no</span>，而不是作出失實聲明。
+                </p>
+              </div>
+              <p>
+                學生亦應準備一個碼本例子作口頭報告，並能解釋「AI 協助來源核對」
+                與「獨立人類判斷」之間的差別。
+              </p>
+            </section>
+          </article>
+        </div>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        <div>
+          <strong data-i18n="footerTitle">Noun → Verb Atlas</strong>
+          <p data-i18n="footerText">
+            A course project for TRAN3620 Translation Technology in the Age of AI.
+            Corpus source: NV Atlas / OpenSubtitles v2024.
+          </p>
+        </div>
+        <div class="footer-links">
+          <a href="index.html" data-i18n="navExplorer">Explorer</a>
+          <a href="report.html" data-i18n="navReport">Learning report</a>
+          <a href="codebook.html" data-i18n="navCodebook">Codebook</a>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

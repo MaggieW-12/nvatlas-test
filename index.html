@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="An interactive corpus explorer for English nominalization and Chinese verbalization in translated subtitles.">
+    <title>Noun → Verb Atlas | Corpus Explorer</title>
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="assets/styles.css">
+    <script src="assets/site.js" defer></script>
+    <script src="assets/explorer.js" defer></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="header-inner">
+        <a class="brand" href="index.html" aria-label="Noun to Verb Atlas home">
+          <span class="brand-mark">NV</span>
+          <span class="brand-copy">
+            <strong>Noun → Verb Atlas</strong>
+            <small data-i18n="brandSubtitle">Translation corpus lab</small>
+          </span>
+        </a>
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="siteNav">☰</button>
+        <nav class="site-nav" id="siteNav" aria-label="Primary navigation">
+          <a href="index.html" aria-current="page" data-i18n="navExplorer">Explorer</a>
+          <a href="report.html" data-i18n="navReport">Learning report</a>
+          <a href="codebook.html" data-i18n="navCodebook">Codebook</a>
+          <a href="ai-use.html" data-i18n="navAi">AI use</a>
+        </nav>
+        <div class="language-switch" role="group" aria-label="Interface language">
+          <button type="button" data-lang="en" aria-pressed="true">EN</button>
+          <button type="button" data-lang="zh" aria-pressed="false">繁</button>
+        </div>
+      </div>
+    </header>
+
+    <main class="page-shell">
+      <section class="hero">
+        <div>
+          <p class="eyebrow" data-i18n="eyebrow">TRAN3620 corpus explorer</p>
+          <h1>
+            <span data-i18n="heroTitle">From nouns</span>
+            <em data-i18n="heroTitleAccent">to actions.</em>
+          </h1>
+          <p class="hero-lede" data-i18n="heroLede">
+            What happens when an English nominal becomes a verb in Chinese subtitle
+            translation? Search the corpus, follow term-to-verb links, and test a
+            semantic codebook against 500 traceable sentence pairs.
+          </p>
+          <div class="hero-actions">
+            <a class="button" href="#explorer" data-i18n="exploreButton">Explore the corpus</a>
+            <a class="button secondary" href="report.html" data-i18n="reportButton">Read the learning report</a>
+          </div>
+        </div>
+        <aside class="hero-card" aria-label="Corpus summary">
+          <dl>
+            <div>
+              <dt data-i18n="cardEntries">Sentence pairs</dt>
+              <dd id="heroEntries">500</dd>
+            </div>
+            <div>
+              <dt data-i18n="cardTerms">Nominals</dt>
+              <dd id="heroTerms">—</dd>
+            </div>
+            <div>
+              <dt data-i18n="cardVerbs">Verb renderings</dt>
+              <dd id="heroVerbs">—</dd>
+            </div>
+            <div>
+              <dt data-i18n="cardChecked">Source-checked</dt>
+              <dd id="heroChecked">50</dd>
+            </div>
+          </dl>
+        </aside>
+      </section>
+
+      <div class="content-note" role="note">
+        <strong data-i18n="contentWarningLabel">Content note</strong>
+        <span data-i18n="contentWarning">
+          Subtitle excerpts may contain profanity, violence, or other sensitive themes.
+        </span>
+      </div>
+
+      <section class="section" id="explorer">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow" data-i18n="searchEyebrow">Linked exploration</p>
+            <h2 data-i18n="searchTitle">Search, filter, compare</h2>
+          </div>
+          <p data-i18n="searchDescription">
+            Every chart and the data grid use the same filtered view. The current
+            search is saved in the URL so it can be shared.
+          </p>
+        </div>
+
+        <form class="search-panel" id="searchForm">
+          <div class="search-grid">
+            <div class="field">
+              <label for="searchInput" data-i18n="searchLabel">Keyword</label>
+              <input
+                id="searchInput"
+                name="q"
+                type="search"
+                autocomplete="off"
+                data-i18n-placeholder="searchPlaceholder"
+                placeholder="Try attention, 注意, or 允许"
+              >
+            </div>
+            <div class="field">
+              <label for="categoryFilter" data-i18n="categoryLabel">Semantic category</label>
+              <select id="categoryFilter" name="category">
+                <option value="" data-i18n-option="allCategories">All categories</option>
+                <option value="Communication &amp; representation" data-i18n-option="categoryCommunication">Communication &amp; representation</option>
+                <option value="Cognition &amp; emotion" data-i18n-option="categoryCognition">Cognition &amp; emotion</option>
+                <option value="Institutions &amp; rules" data-i18n-option="categoryInstitutions">Institutions &amp; rules</option>
+                <option value="Everyday action &amp; state" data-i18n-option="categoryEveryday">Everyday action &amp; state</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="checkedFilter" data-i18n="reviewedLabel">Source check</label>
+              <select id="checkedFilter" name="checked">
+                <option value="" data-i18n-option="allChecks">All entries</option>
+                <option value="yes" data-i18n-option="checkedOnly">Checked only</option>
+                <option value="no" data-i18n-option="uncheckedOnly">Not yet checked</option>
+              </select>
+            </div>
+            <button class="button" type="submit" data-i18n="applySearch">Update view</button>
+          </div>
+          <div class="search-status">
+            <span class="results-count" id="resultsCount" aria-live="polite"></span>
+            <span id="activeFilters"></span>
+            <button class="ghost-button" id="resetFilters" type="button" data-i18n="resetSearch">Reset filters</button>
+          </div>
+        </form>
+
+        <div class="viz-grid">
+          <article class="viz-card wide">
+            <div class="viz-header">
+              <div>
+                <h3 data-i18n="networkTitle">Nominal–verb network</h3>
+                <p class="viz-caption" data-i18n="networkCaption">
+                  Which English nominals connect to which Chinese verbs, and where do
+                  the strongest repeated links occur?
+                </p>
+              </div>
+              <span class="viz-tag" data-i18n="networkTag">Relational</span>
+            </div>
+            <div class="chart-controls">
+              <label class="range-control" for="topTermsRange">
+                <span data-i18n="topTerms">Top terms</span>
+                <input id="topTermsRange" type="range" min="6" max="24" step="2">
+                <output id="topTermsValue" for="topTermsRange">18</output>
+              </label>
+              <label class="range-control" for="minWeightRange">
+                <span data-i18n="minWeight">Minimum link weight</span>
+                <input id="minWeightRange" type="range" min="1" max="5" step="1">
+                <output id="minWeightValue" for="minWeightRange">1</output>
+              </label>
+              <button class="ghost-button" type="button" id="resetChartControls" data-i18n="resetControls">Reset controls</button>
+              <span class="quiet" data-i18n="networkHelp">
+                Click either side of a link to search that term.
+              </span>
+            </div>
+            <div class="viz-stage network-stage" id="networkChart"></div>
+          </article>
+
+          <article class="viz-card">
+            <div class="viz-header">
+              <div>
+                <h3 data-i18n="scatterTitle">Length and semantic field</h3>
+                <p class="viz-caption" data-i18n="scatterCaption">
+                  How do source and target lengths vary across the four semantic categories?
+                </p>
+              </div>
+              <span class="viz-tag" data-i18n="scatterTag">Distributional</span>
+            </div>
+            <div class="viz-stage" id="scatterChart"></div>
+            <div class="chart-legend" id="scatterLegend"></div>
+          </article>
+
+          <article class="viz-card">
+            <div class="viz-header">
+              <div>
+                <h3 data-i18n="kwicTitle">Bilingual KWIC</h3>
+                <p class="viz-caption" data-i18n="kwicCaption">
+                  Which sentence contexts support the nominal-to-verbal interpretation?
+                </p>
+              </div>
+              <span class="viz-tag" data-i18n="kwicTag">Lexical</span>
+            </div>
+            <div class="kwic-list" id="kwicList"></div>
+          </article>
+
+          <article class="viz-card wide">
+            <div class="viz-header">
+              <div>
+                <h3 data-i18n="heatmapTitle">Suffix by category</h3>
+                <p class="viz-caption" data-i18n="heatmapCaption">
+                  Which English nominal endings cluster within each semantic field?
+                </p>
+              </div>
+              <span class="viz-tag" data-i18n="heatmapTag">Distributional</span>
+            </div>
+            <p class="quiet" data-i18n="heatmapInstruction">
+              Click a cell to combine its suffix and category with the current filters.
+            </p>
+            <div class="viz-stage" id="heatmapChart"></div>
+          </article>
+        </div>
+
+        <article class="viz-card data-panel wide">
+          <div class="viz-header">
+            <div>
+              <h3 data-i18n="tableTitle">Corpus data grid</h3>
+              <p class="viz-caption" data-i18n="tableCaption">
+                Sort, inspect, and export the exact filtered records used by the visualizations.
+              </p>
+            </div>
+            <span class="viz-tag" data-i18n="tableTag">Tabular</span>
+          </div>
+          <div class="table-toolbar">
+            <span class="quiet" id="tableStatus"></span>
+            <button class="button secondary" id="exportCsv" type="button" data-i18n="exportCsv">Export filtered CSV</button>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th><button type="button" data-sort="id" data-i18n="id">ID</button></th>
+                  <th><button type="button" data-sort="source_text" data-i18n="sourceText">English source</button></th>
+                  <th><button type="button" data-sort="target_text" data-i18n="targetText">Chinese target</button></th>
+                  <th><button type="button" data-sort="key_term" data-i18n="term">Key term</button></th>
+                  <th><button type="button" data-sort="target_key_term" data-i18n="targetTerm">Chinese verb</button></th>
+                  <th><button type="button" data-sort="category" data-i18n="category">Category</button></th>
+                  <th><button type="button" data-sort="human_checked" data-i18n="checked">Checked</button></th>
+                </tr>
+              </thead>
+              <tbody id="corpusRows"></tbody>
+            </table>
+          </div>
+          <div class="pagination">
+            <button class="ghost-button" id="previousPage" type="button" data-i18n="previous">Previous</button>
+            <span id="pageStatus"></span>
+            <button class="ghost-button" id="nextPage" type="button" data-i18n="next">Next</button>
+          </div>
+        </article>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        <div>
+          <strong data-i18n="footerTitle">Noun → Verb Atlas</strong>
+          <p data-i18n="footerText">
+            A course project for TRAN3620 Translation Technology in the Age of AI.
+            Corpus source: NV Atlas / OpenSubtitles v2024.
+          </p>
+          <p>Sample seed 2026 · collected 5 November 2026</p>
+        </div>
+        <div class="footer-links">
+          <a href="report.html#method" data-i18n="footerSource">Source &amp; method</a>
+          <a href="report.html" data-i18n="footerReport">Report</a>
+          <a href="ai-use.html" data-i18n="footerDeclaration">AI declaration</a>
+          <a href="https://nvatlas.tra.cuhk.edu.hk/" target="_blank" rel="noreferrer">NV Atlas ↗</a>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

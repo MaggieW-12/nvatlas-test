@@ -1,0 +1,394 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Four-category codebook for English nominal-to-Chinese verbal shifts.">
+    <title>Codebook | Noun → Verb Atlas</title>
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="assets/styles.css">
+    <script src="assets/site.js" defer></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="header-inner">
+        <a class="brand" href="index.html" aria-label="Noun to Verb Atlas home">
+          <span class="brand-mark">NV</span>
+          <span class="brand-copy">
+            <strong>Noun → Verb Atlas</strong>
+            <small data-i18n="brandSubtitle">Translation corpus lab</small>
+          </span>
+        </a>
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="siteNav">☰</button>
+        <nav class="site-nav" id="siteNav" aria-label="Primary navigation">
+          <a href="index.html" data-i18n="navExplorer">Explorer</a>
+          <a href="report.html" data-i18n="navReport">Learning report</a>
+          <a href="codebook.html" aria-current="page" data-i18n="navCodebook">Codebook</a>
+          <a href="ai-use.html" data-i18n="navAi">AI use</a>
+        </nav>
+        <div class="language-switch" role="group" aria-label="Interface language">
+          <button type="button" data-lang="en" aria-pressed="true">EN</button>
+          <button type="button" data-lang="zh" aria-pressed="false">繁</button>
+        </div>
+      </div>
+    </header>
+
+    <main class="page-shell codebook-page">
+      <div data-page-lang="en">
+        <header class="report-hero">
+          <p class="eyebrow">Classification instrument</p>
+          <h1>Codebook</h1>
+          <p>
+            Four semantic fields for deciding what kind of meaning an English nominal
+            foregrounds when it becomes a Chinese verb in the aligned subtitle.
+          </p>
+        </header>
+
+        <div class="report-layout">
+          <nav class="report-toc" aria-label="Codebook contents">
+            <a href="#scope">Scope</a>
+            <a href="#categories">Categories</a>
+            <a href="#communication">Communication</a>
+            <a href="#cognition">Cognition</a>
+            <a href="#institutions">Institutions</a>
+            <a href="#everyday">Everyday</a>
+            <a href="#log">Change log</a>
+          </nav>
+
+          <article class="report-body">
+            <section class="report-section" id="scope">
+              <h2>Scope and unit</h2>
+              <p>
+                The coding unit is one NV Atlas sentence record with an English nominal
+                and a Chinese verbal rendition. I classify the meaning foregrounded by
+                the <em>English nominal in its sentence</em>. The Chinese verb helps
+                confirm that the aligned phrase is a process rather than a literal
+                nominal equivalent, but its word shape does not determine the category.
+              </p>
+              <p>
+                The codebook combines Halliday and Matthiessen's distinction among
+                material, mental, verbal, and relational process types with Vinay and
+                Darbelnet's concept of transposition. “Institutions and rules” is an
+                applied category for official or procedural contexts in this subtitle
+                sample; it does not claim to be a separate transitivity process.
+              </p>
+              <div class="callout">
+                <strong>Priority rule.</strong> If a noun could fit two categories, first
+                decide whether the sentence explicitly frames the event as an official or
+                institutional procedure. If not, choose communication for saying/writing/
+                representing, cognition for sensing/feeling/knowing, and everyday for all
+                remaining actions and states.
+              </div>
+            </section>
+
+            <section class="report-section" id="categories">
+              <h2>Category table</h2>
+              <div class="table-wrap">
+                <table class="codebook-table">
+                  <thead>
+                    <tr>
+                      <th>Category</th>
+                      <th>Definition and theory</th>
+                      <th>Decision rule</th>
+                      <th>Positive / negative</th>
+                      <th>Boundary case</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr id="communication">
+                      <td>Communication &amp; representation</td>
+                      <td>
+                        The nominal names an act or product of saying, writing, showing,
+                        asking, or recording. This is closest to Halliday's verbal
+                        process, extended to visual representation.
+                      </td>
+                      <td>
+                        Select when the sentence centres on information exchanged or
+                        represented through language or an image.
+                      </td>
+                      <td>
+                        <strong>+</strong> question → 问<br>
+                        <strong>−</strong> protection → 保护 (an action, not communication)
+                      </td>
+                      <td>
+                        invitation → 邀请. It also names a social event, but the sentence
+                        treats it as a communicative offer, so it is coded here.
+                      </td>
+                    </tr>
+                    <tr id="cognition">
+                      <td>Cognition &amp; emotion</td>
+                      <td>
+                        The nominal foregrounds perception, thought, belief, desire, or
+                        feeling. Halliday calls this the mental process type.
+                      </td>
+                      <td>
+                        Select when the English nominal describes an interior experience
+                        or a change in someone's attention or emotional state.
+                      </td>
+                      <td>
+                        <strong>+</strong> disappointment → 失望<br>
+                        <strong>−</strong> permission → 允许 (an allowed action or right)
+                      </td>
+                      <td>
+                        attention → 注意. A command to listen still turns on perception
+                        and attentional focus, so it stays in this category even though it
+                        is socially directive.
+                      </td>
+                    </tr>
+                    <tr id="institutions">
+                      <td>Institutions &amp; rules</td>
+                      <td>
+                        The nominal is part of a legal, administrative, employment,
+                        religious, or procedural frame where a recognised rule assigns
+                        roles or consequences.
+                      </td>
+                      <td>
+                        Select when court, police, employment, permission, punishment, or
+                        formal procedure is explicit in the aligned context.
+                      </td>
+                      <td>
+                        <strong>+</strong> permission → 允许<br>
+                        <strong>−</strong> celebration → 庆祝 (a general social action)
+                      </td>
+                      <td>
+                        sentence → 判决/判刑. It can sound like a verbal act, but in court
+                        scenes it is an institutionally defined procedure and receives
+                        institutional priority.
+                      </td>
+                    </tr>
+                    <tr id="everyday">
+                      <td>Everyday action &amp; state</td>
+                      <td>
+                        The nominal profiles a physical, social, or routine process, or a
+                        general state that is not specifically mental, communicative, or
+                        institutional. This is the residual material/state category.
+                      </td>
+                      <td>
+                        Select only after the three more specific categories have been
+                        checked and rejected.
+                      </td>
+                      <td>
+                        <strong>+</strong> protection → 保护<br>
+                        <strong>−</strong> explanation → 解释 (an explicit communicative act)
+                      </td>
+                      <td>
+                        observation → 观察. Medical observation can feel institutional,
+                        but here the nominal itself names the general act of watching or
+                        monitoring; it remains everyday unless the sentence makes an
+                        official procedure central.
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+
+            <section class="report-section" id="log">
+              <h2>Change log</h2>
+              <ol>
+                <li>
+                  <strong>Draft 1 (24-entry pre-test).</strong> I began with action,
+                  state, and communication. The pre-test showed that legal procedure and
+                  permission repeatedly crossed those boundaries, so a fourth applied
+                  category was needed.
+                </li>
+                <li>
+                  <strong>Draft 2 (theory alignment).</strong> I aligned the first three
+                  fields with material, mental, and verbal meaning, while retaining an
+                  institutional field for this corpus's visible legal and administrative
+                  content. I clarified that the “everyday” field is residual.
+                </li>
+                <li>
+                  <strong>Draft 3 (context rules).</strong> During the 50-entry check,
+                  terms such as <em>administration</em>, <em>government</em>,
+                  <em>sanction</em>, and <em>revocation</em> were moved to institutions.
+                  <em>Consideration</em> was moved to communication when used in the
+                  formula “for your consideration”, and <em>insistence</em> was treated as
+                  a communicative claim.
+                </li>
+                <li>
+                  <strong>Data cleaning.</strong> One malformed apostrophe sequence was
+                  normalised to a typographic apostrophe. The 50 checked source IDs and
+                  sentence pairs otherwise matched the public NV Atlas records.
+                </li>
+              </ol>
+            </section>
+          </article>
+        </div>
+      </div>
+
+      <div data-page-lang="zh" hidden>
+        <header class="report-hero">
+          <p class="eyebrow">分類工具</p>
+          <h1>分類碼本</h1>
+          <p>
+            以四個語意場判斷英語名詞在對齊字幕譯為中文動詞時，主要突顯哪一類意義。
+          </p>
+        </header>
+
+        <div class="report-layout">
+          <nav class="report-toc" aria-label="碼本目錄">
+            <a href="#zh-scope">範圍</a>
+            <a href="#zh-categories">類別</a>
+            <a href="#zh-communication">溝通</a>
+            <a href="#zh-cognition">認知</a>
+            <a href="#zh-institutions">制度</a>
+            <a href="#zh-everyday">日常</a>
+            <a href="#zh-log">修改紀錄</a>
+          </nav>
+
+          <article class="report-body">
+            <section class="report-section" id="zh-scope">
+              <h2>範圍與分析單位</h2>
+              <p>
+                分析單位是一條 NV Atlas 句對紀錄，包含一個英語名詞及其中文動詞譯法。
+                分類對象是<em>該名詞在句中所突顯的意義</em>。中文動詞有助確認對齊詞語
+                表達過程而非名詞直譯，但中文詞形本身不決定類別。
+              </p>
+              <p>
+                碼本結合 Halliday 與 Matthiessen 對物質、心理、言語及關係過程的區分，
+                以及 Vinay 與 Darbelnet 的「詞性轉換」概念。「制度與規則」是因應本字幕
+                樣本中明顯的法律及行政語境而設的應用類別，並不宣稱是另一種及物性過程。
+              </p>
+              <div class="callout">
+                <strong>優先規則。</strong>當名詞可以落入兩類時，先判斷句子是否明確把
+                事件框定為官方或制度程序；若不是，說、寫、表達歸入溝通，感知、情感、
+                認知歸入心理，其餘行動與狀態歸入日常。
+              </div>
+            </section>
+
+            <section class="report-section" id="zh-categories">
+              <h2>類別表</h2>
+              <div class="table-wrap">
+                <table class="codebook-table">
+                  <thead>
+                    <tr>
+                      <th>類別</th>
+                      <th>定義與理論</th>
+                      <th>判斷規則</th>
+                      <th>正例／反例</th>
+                      <th>邊界個案</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr id="zh-communication">
+                      <td>溝通與再現</td>
+                      <td>
+                        名詞指稱說話、書寫、詢問、展示、記錄的行為或成品，最接近
+                        Halliday 的言語過程，並延伸至視覺再現。
+                      </td>
+                      <td>當句子重點是以語言或影像交換、表達資訊時選用。</td>
+                      <td>
+                        <strong>+</strong> question → 问<br>
+                        <strong>−</strong> protection → 保护（行動而非溝通）
+                      </td>
+                      <td>
+                        invitation → 邀请。它亦指社交事件，但句中把它作為語言上的
+                        邀請，因此歸入此類。
+                      </td>
+                    </tr>
+                    <tr id="zh-cognition">
+                      <td>認知與情感</td>
+                      <td>
+                        名詞突顯感知、思想、信念、願望或情緒，即 Halliday 所稱的
+                        心理過程。
+                      </td>
+                      <td>
+                        當英語名詞描述內在經驗，或注意力和情緒狀態的改變時選用。
+                      </td>
+                      <td>
+                        <strong>+</strong> disappointment → 失望<br>
+                        <strong>−</strong> permission → 允许（被允許的行動或權利）
+                      </td>
+                      <td>
+                        attention → 注意。要求別人留意的命令仍涉及感知與注意力，
+                        因此即使具社交指令功能，仍歸入此類。
+                      </td>
+                    </tr>
+                    <tr id="zh-institutions">
+                      <td>制度與規則</td>
+                      <td>
+                        名詞屬於法律、行政、就業、宗教或程序框架，並由公認規則
+                        分配角色或後果。
+                      </td>
+                      <td>
+                        當對齊語境明確涉及法院、警察、就業、許可、懲罰或正式程序時選用。
+                      </td>
+                      <td>
+                        <strong>+</strong> permission → 允许<br>
+                        <strong>−</strong> celebration → 庆祝（一般社交行動）
+                      </td>
+                      <td>
+                        sentence → 判决／判刑。它可以像言語行為，但在法庭場景中是
+                        制度界定的程序，因此優先歸入制度類。
+                      </td>
+                    </tr>
+                    <tr id="zh-everyday">
+                      <td>日常行動與狀態</td>
+                      <td>
+                        名詞突顯物理、社交或日常過程，或未被更具體地歸為心理、
+                        溝通及制度的狀態；這是剩餘的物質／狀態類。
+                      </td>
+                      <td>先檢查並排除前三類後，才選用此類。</td>
+                      <td>
+                        <strong>+</strong> protection → 保护<br>
+                        <strong>−</strong> explanation → 解释（明確的溝通行為）
+                      </td>
+                      <td>
+                        observation → 观察。醫療觀察看似屬於制度，但名詞本身指
+                        一般觀察／監測行動；除非句子以官方程序為核心，否則留在日常類。
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+
+            <section class="report-section" id="zh-log">
+              <h2>修改紀錄</h2>
+              <ol>
+                <li>
+                  <strong>第一稿（24 條預試）。</strong>初稿只有行動、狀態及溝通。
+                  預試發現法律程序與許可經常跨越界線，因此增加第四個應用類別。
+                </li>
+                <li>
+                  <strong>第二稿（理論對齊）。</strong>把前三類對應物質、心理及言語
+                  意義，同時保留制度類以處理語料中明顯的法律及行政內容，並清楚說明
+                  「日常」是剩餘類別。
+                </li>
+                <li>
+                  <strong>第三稿（語境規則）。</strong>核對 50 條時，
+                  <em>administration</em>、<em>government</em>、<em>sanction</em>、
+                  <em>revocation</em> 等詞改歸制度類；<em>consideration</em> 在
+                  “for your consideration” 公式中改歸溝通類；<em>insistence</em>
+                  被視為主張，歸入溝通類。
+                </li>
+                <li>
+                  <strong>資料清理。</strong>把一組錯誤編碼的撇號正規化為正確標點；
+                  其餘 50 條已核對的來源編號及句對均與公開 NV Atlas 紀錄相符。
+                </li>
+              </ol>
+            </section>
+          </article>
+        </div>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        <div>
+          <strong data-i18n="footerTitle">Noun → Verb Atlas</strong>
+          <p data-i18n="footerText">
+            A course project for TRAN3620 Translation Technology in the Age of AI.
+            Corpus source: NV Atlas / OpenSubtitles v2024.
+          </p>
+        </div>
+        <div class="footer-links">
+          <a href="index.html" data-i18n="navExplorer">Explorer</a>
+          <a href="report.html" data-i18n="navReport">Learning report</a>
+          <a href="ai-use.html" data-i18n="footerDeclaration">AI declaration</a>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
