@@ -1,14 +1,16 @@
-# nvatlas-test
-A test website of NV Atlas for TT class.
+# NV Atlas Test Website
+
+A test website for the TT class.
 
 ## Description
-This is a test website being used in the TT class.
-Created on ***5 November, 2026***
 
-### 3rd level title
-We don't write Python program anymore
+This repository is used for a TT class exercise. The current exercise demonstrates
+writing documentation with Markdown rather than creating a Python program.
 
-Table:
+Created on **5 November 2026**.
+
+## Markdown examples
+
 | Syntax | Description |
 |--------|-------------|
 | Header | Title       |
